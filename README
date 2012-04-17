@@ -1,2 +1,9 @@
 NOTE - this is untested and probably unstable.
-Pull requests are welcome - I recognise that the code needs some work.
+Pull requests / forks are welcome. I recognise that the code is not good.
+
+MapOS is intended to be a plugin implementing a full OS-like system on maps, which can hold custom data.
+The OS would be similar to an iPad, and include a set of default apps along with a global 'store', possibly
+for iConomy credits or a similar in game currency.
+
+Currently, looking around moves the mouse around the screen, with left-click and right-click done using
+armswings. Some backing framework is also semi-implemented.
