@@ -23,22 +23,22 @@ import com.fullwall.maps.os.MapScreen.Mouse;
  * @author fullwall
  */
 public interface Screen extends Saveable, Loadable, MouseController<Mouse> {
-	void forwardKeyEvent(Key key, boolean pressed);
+    void forwardKeyEvent(Key key, boolean pressed);
 
-	void forwardMouseEvent(MouseClick click, boolean pressed);
+    void forwardMouseEvent(MouseClick click, boolean pressed);
 
-	/**
-	 * Notify contained objects of a render event, using the given canvas.
-	 */
-	void forwardRender(MapCanvas canvas);
+    /**
+     * Notify contained objects of a render event, using the given canvas.
+     */
+    void forwardRender(MapCanvas canvas);
 
-	/**
-	 * Returns the screen's @link ScreenAttachments.
-	 */
-	ScreenAttachments getAttachments();
+    /**
+     * Returns the screen's @link ScreenAttachments.
+     */
+    ScreenAttachments getAttachments();
 
-	/**
-	 * Returns the screen's @link ScreenRenderer.
-	 */
-	ScreenRenderer getRenderController();
+    /**
+     * Returns the screen's @link ScreenRenderer.
+     */
+    ScreenRenderer getRenderController();
 }

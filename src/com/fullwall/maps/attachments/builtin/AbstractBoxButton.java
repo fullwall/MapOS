@@ -5,18 +5,18 @@ import com.fullwall.maps.attachments.ClickableArea;
 import com.fullwall.maps.shapes.Rectangle;
 
 public abstract class AbstractBoxButton implements Clickable {
-	private final ClickableArea area;
+    private final ClickableArea area;
 
-	protected AbstractBoxButton(int x, int y, int width, int height) {
-		this(new Rectangle(x, y, width, height));
-	}
+    protected AbstractBoxButton(int x, int y, int width, int height) {
+        this(new Rectangle(x, y, width, height));
+    }
 
-	protected AbstractBoxButton(Rectangle box) {
-		this.area = new ClickableShape(box);
-	}
+    protected AbstractBoxButton(Rectangle box) {
+        this.area = new ClickableShape(box);
+    }
 
-	@Override
-	public ClickableArea getClickableArea() {
-		return area;
-	}
+    @Override
+    public ClickableArea getClickableArea() {
+        return area;
+    }
 }

@@ -1,6 +1,5 @@
 package com.fullwall.maps.applications;
 
-import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
@@ -10,15 +9,13 @@ import com.fullwall.maps.storage.NBTStorage;
 import com.fullwall.maps.storage.jnbt.Tag;
 
 public interface ApplicationFactory {
-	public Application create(OperatingSystem os, Map<String, Tag> localSettings);
+    public Application create(OperatingSystem os, Map<String, Tag> localSettings);
 
-	public String getName();
+    public Set<Capability> getCapabilities();
 
-	public void loadGlobalSettings(NBTStorage storage);
+    public ApplicationIcon getIcon(IconScale scale);
 
-	public Set<Capability> getCapabilities();
+    public String getName();
 
-	public Collection<String> getCommands();
-
-	public ApplicationIcon getIcon(IconScale scale);
+    public void loadGlobalSettings(NBTStorage storage);
 }

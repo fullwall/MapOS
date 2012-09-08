@@ -14,21 +14,21 @@ import com.fullwall.maps.interfaces.Associatables.Associatable;
  *            the type to perform associations with
  */
 public interface Associator<T> {
-	void associate(Associatable<T> associated, T association);
+    void associate(Associatable<T> associated, T association);
 
-	void associate(Class<? extends Associatable<T>> association, T associated);
+    void associate(Class<? extends Associatable<T>> association, T associated);
 
-	void clearAssociations();
+    void clearAssociations();
 
-	Collection<T> getAssociations(Associatable<T> association);
+    Collection<T> getAssociations(Associatable<T> association);
 
-	Collection<T> getAssociations(Class<? extends Associatable<T>> association);
+    Collection<T> getAssociations(Class<? extends Associatable<T>> association);
 
-	boolean isAssociated(Associatable<T> association);
+    boolean isAssociated(Associatable<T> association);
 
-	boolean isAssociated(Class<? extends Associatable<T>> association);
+    boolean isAssociated(Class<? extends Associatable<T>> association);
 
-	void remove(Associatable<T> association);
+    void remove(Associatable<T> association);
 
-	void remove(Class<? extends Associatable<T>> association);
+    void remove(Class<? extends Associatable<T>> association);
 }

@@ -10,16 +10,16 @@ package com.fullwall.maps.interfaces;
  *            the mouse object type.
  */
 public interface MouseController<T> {
-	/**
-	 * Returns the mouse controlled by this controller.
-	 */
-	T getMouse();
+    /**
+     * Returns the mouse controlled by this controller.
+     */
+    T getMouse();
 
-	/**
-	 * Moves the mouse an arbitrary amount horizontally and vertically.
-	 * 
-	 * @param horizontal
-	 * @param vertical
-	 */
-	void moveMouse(int horizontal, int vertical);
+    /**
+     * Moves the mouse an arbitrary amount horizontally and vertically.
+     * 
+     * @param horizontal
+     * @param vertical
+     */
+    void moveMouse(int horizontal, int vertical);
 }

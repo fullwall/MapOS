@@ -1,6 +1,6 @@
 package com.fullwall.maps.interfaces;
 
-import com.fullwall.maps.storage.NBTMemoryStorage.NBTKey;
+import com.fullwall.maps.storage.DataKey;
 
 /**
  * Represents an object which can save its state.
@@ -8,7 +8,7 @@ import com.fullwall.maps.storage.NBTMemoryStorage.NBTKey;
  * @author fullwall
  */
 public interface Saveable {
-	void save(NBTKey root);
+    String getRootName();
 
-	String getRootName();
+    void save(DataKey root);
 }

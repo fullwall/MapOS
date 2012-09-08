@@ -6,9 +6,9 @@ import com.fullwall.maps.attachments.ClickableArea;
 import com.fullwall.maps.attachments.MouseListener;
 
 public interface MenuItem extends MouseListener {
-	ClickableArea getClickableArea();
+    ClickableArea getClickableArea();
 
-	int getHeight();
+    int getHeight();
 
-	void render(MapCanvas canvas, int currentX, int currentY);
+    void render(MapCanvas canvas, int currentX, int currentY);
 }

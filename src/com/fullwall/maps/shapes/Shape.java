@@ -3,13 +3,13 @@ package com.fullwall.maps.shapes;
 import com.fullwall.maps.shapes.Outliner.PrimitiveDrawer;
 
 public interface Shape {
-	boolean interescts(int x, int y);
+    boolean interescts(int x, int y);
 
-	void outline(PrimitiveDrawer drawer);
+    void outline(PrimitiveDrawer drawer);
 
-	Shape rotate(double degrees);
+    Shape rotate(double degrees);
 
-	Shape scale(double scale);
+    Shape scale(double scale);
 
-	Shape translate(int x, int y);
+    Shape translate(int x, int y);
 }

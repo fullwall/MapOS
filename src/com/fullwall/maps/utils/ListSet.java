@@ -16,51 +16,51 @@ import java.util.Set;
  * @author fullwall
  */
 public class ListSet<T> implements Iterable<T> {
-	private final List<T> list = new ArrayList<T>();
-	private final Set<T> set = new HashSet<T>();
+    private final List<T> list = new ArrayList<T>();
+    private final Set<T> set = new HashSet<T>();
 
-	public void add(T t) {
-		if (set.contains(t))
-			return;
-		list.add(t);
-		set.add(t);
-	}
+    public void add(T t) {
+        if (set.contains(t))
+            return;
+        list.add(t);
+        set.add(t);
+    }
 
-	public void addAll(Collection<T> collection) {
-		list.addAll(collection);
-		set.addAll(list);
-	}
+    public void addAll(Collection<T> collection) {
+        list.addAll(collection);
+        set.addAll(list);
+    }
 
-	public List<T> asList() {
-		return Collections.unmodifiableList(list);
-	}
+    public List<T> asList() {
+        return Collections.unmodifiableList(list);
+    }
 
-	public Set<T> asSet() {
-		return Collections.unmodifiableSet(set);
-	}
+    public Set<T> asSet() {
+        return Collections.unmodifiableSet(set);
+    }
 
-	public boolean contains(T t) {
-		return set.contains(t);
-	}
+    public boolean contains(T t) {
+        return set.contains(t);
+    }
 
-	public T get(int index) {
-		return list.get(index);
-	}
+    public T get(int index) {
+        return list.get(index);
+    }
 
-	@Override
-	public Iterator<T> iterator() {
-		return list.iterator();
-	}
+    @Override
+    public Iterator<T> iterator() {
+        return list.iterator();
+    }
 
-	public boolean remove(T t) {
-		if (!set.contains(t))
-			return false;
-		set.remove(t);
-		list.remove(t);
-		return true;
-	}
+    public boolean remove(T t) {
+        if (!set.contains(t))
+            return false;
+        set.remove(t);
+        list.remove(t);
+        return true;
+    }
 
-	public int size() {
-		return list.size();
-	}
+    public int size() {
+        return list.size();
+    }
 }

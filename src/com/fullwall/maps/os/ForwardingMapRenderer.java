@@ -8,16 +8,16 @@ import org.bukkit.map.MapView;
 import com.fullwall.maps.MapController;
 
 public class ForwardingMapRenderer extends MapRenderer {
-	private final MapController controller;
+    private final MapController controller;
 
-	public ForwardingMapRenderer(MapController controller) {
-		this.controller = controller;
-	}
+    public ForwardingMapRenderer(MapController controller) {
+        this.controller = controller;
+    }
 
-	@Override
-	public void render(MapView map, MapCanvas canvas, Player player) {
-		if (!controller.hasSystem(player))
-			return;
-		controller.getSystem(player).getScreen().forwardRender(canvas);
-	}
+    @Override
+    public void render(MapView map, MapCanvas canvas, Player player) {
+        if (!controller.hasSystem(player))
+            return;
+        controller.getSystem(player).getScreen().forwardRender(canvas);
+    }
 }

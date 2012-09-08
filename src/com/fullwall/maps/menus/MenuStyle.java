@@ -3,11 +3,11 @@ package com.fullwall.maps.menus;
 import org.bukkit.map.MapCanvas;
 
 public interface MenuStyle {
-	Padding defaultPadding();
+    Padding defaultPadding();
 
-	int getItemSpacing();
+    int getItemSpacing();
 
-	void renderIndentation(MapCanvas canvas, int x, int y, int indentationLevel);
+    void renderIndentation(MapCanvas canvas, int x, int y, int indentationLevel);
 
-	public static MenuStyle Default = new DefaultMenuStyle();
+    public static MenuStyle Default = new DefaultMenuStyle();
 }

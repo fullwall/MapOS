@@ -11,14 +11,14 @@ import com.fullwall.maps.applications.CanvasRenderer;
  * @author fullwall
  */
 public interface Animation extends ScreenAttachment, CanvasRenderer {
-	/**
-	 * Used to notify the animation of its status. Will be incremented every
-	 * render pass.
-	 */
-	void incrementFrame();
+    /**
+     * Used to notify the animation of its status. Will be incremented every
+     * render pass.
+     */
+    void incrementFrame();
 
-	/**
-	 * @return whether the represented animation is finished.
-	 */
-	boolean isFinished();
+    /**
+     * @return whether the represented animation is finished.
+     */
+    boolean isFinished();
 }

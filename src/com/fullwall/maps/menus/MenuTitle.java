@@ -3,7 +3,7 @@ package com.fullwall.maps.menus;
 import com.fullwall.maps.utils.MapString;
 
 public interface MenuTitle {
-	MapString getTitle();
+    MapString getTitle();
 
-	Padding padding();
+    Padding padding();
 }

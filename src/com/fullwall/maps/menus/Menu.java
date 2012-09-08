@@ -7,15 +7,14 @@ import com.fullwall.maps.attachments.RendererDisposer;
 import com.fullwall.maps.interfaces.DelayedRenderer;
 import com.fullwall.maps.interfaces.Screen;
 
-public interface Menu extends RendererDisposer, AttachmentDisposer,
-		DelayedRenderer {
-	void attach(Screen screen);
+public interface Menu extends RendererDisposer, AttachmentDisposer, DelayedRenderer {
+    void attach(Screen screen);
 
-	Collection<MenuItem> getItems();
+    Collection<MenuItem> getItems();
 
-	MenuRenderer getRenderer();
+    MenuRenderer getRenderer();
 
-	MenuStyle getStyle();
+    MenuStyle getStyle();
 
-	MenuTitle getTitle();
+    MenuTitle getTitle();
 }

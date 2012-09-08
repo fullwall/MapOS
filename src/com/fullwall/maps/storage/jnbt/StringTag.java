@@ -1,6 +1,5 @@
 package com.fullwall.maps.storage.jnbt;
 
-
 /*
  * JNBT License
  * 

@@ -4,10 +4,10 @@ import com.fullwall.maps.applications.CanvasRenderer;
 import com.fullwall.maps.interfaces.DelayedRenderer;
 
 public interface MenuRenderer extends CanvasRenderer, DelayedRenderer {
-	@Override
-	void beginRendering();
+    @Override
+    void beginRendering();
 
-	int getIndent();
+    int getIndent();
 
-	void setIndent(int indent);
+    void setIndent(int indent);
 }

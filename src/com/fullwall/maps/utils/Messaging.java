@@ -1,143 +1,80 @@
 package com.fullwall.maps.utils;
 
+import java.util.Arrays;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.fullwall.maps.Settings;
-import com.google.common.base.Splitter;
+import com.google.common.base.Joiner;
 
 public class Messaging {
-	private static final Logger log = Logger.getLogger("Minecraft");
-	private final static String[] colours = { "black", "dblue", "dgreen",
-			"daqua", "dred", "dpurple", "gold", "gray", "dgray", "blue",
-			"green", "aqua", "red", "lpurple", "yellow", "white" };
-	private static final int DELAY_STR_LENGTH = "<delay".length();
+    private static final Joiner SPACE = Joiner.on(" ").useForNull("null");
 
-	private static String colourise(String message) {
-		String format = "<%s>";
-		byte index = 0;
-		for (String colour : colours) {
-			message = message.replaceAll(String.format(format, colour),
-					ChatColor.getByCode(index).toString());
-			++index;
-		}
-		for (int colour = 0; colour < 16; ++colour) {
-			String chatColour = ChatColor.getByCode(colour).toString();
-			message = message.replaceAll(String.format(format, colour),
-					chatColour).replaceAll(
-					String.format(format, Integer.toHexString(colour)),
-					chatColour);
-		}
-		message = message.replaceAll("<g>", ChatColor.GREEN.toString());
-		message = message.replaceAll("<y>", ChatColor.YELLOW.toString());
-		return message;
-	}
+    private static String getFormatted(Object[] msg) {
+        String toFormat = msg[0].toString();
+        Object[] args = msg.length > 1 ? Arrays.copyOfRange(msg, 1, msg.length) : new Object[] {};
+        return String.format(toFormat, args);
+    }
 
-	public static void debug(Object message) {
-		if (Settings.getBoolean("DebugMode")) {
-			log(message);
-		}
-	}
+    public static void log(Level level, Object... msg) {
+        Bukkit.getLogger().log(level, "[Citizens] " + SPACE.join(msg));
+    }
 
-	public static void debug(Object... messages) {
-		if (Settings.getBoolean("DebugMode")) {
-			log(messages);
-		}
-	}
+    public static void log(Object... msg) {
+        log(Level.INFO, msg);
+    }
 
-	public static void delay(final Runnable runnable, String messages) {
-		int index = messages.indexOf("<delay");
-		if (index != -1) {
-			index += DELAY_STR_LENGTH;
-			String assignment = messages.substring(index,
-					messages.indexOf(">", index));
-			int delay = assignment.length() <= 1 ? 1 : Integer
-					.parseInt(assignment.substring(1, assignment.length()));
-			final String substr = messages.substring(
-					index + 1 + assignment.length(), messages.length());
-			Bukkit.getScheduler().scheduleSyncDelayedTask(null, new Runnable() {
-				@Override
-				public void run() {
-					delay(runnable, substr);
-				}
-			}, delay);
-			return;
-		}
-		runnable.run();
-	}
+    public static void log(Throwable ex) {
+        if (ex.getCause() != null)
+            ex = ex.getCause();
+        ex.printStackTrace();
+    }
 
-	public static void dualSend(CommandSender sender, String string) {
-		log(string);
-		if (sender instanceof Player)
-			send(sender, Strings.join(string));
-	}
+    public static void logF(Object... msg) {
+        log(getFormatted(msg));
+    }
 
-	public static void log(Object... messages) {
-		StringBuilder builder = new StringBuilder();
-		for (Object string : messages) {
-			builder.append(string == null ? "null " : string.toString() + " ");
-		}
-		log(builder.toString(), Level.INFO);
-	}
+    public static void send(CommandSender sender, Object... msg) {
+        sendMessageTo(sender, SPACE.join(msg));
+    }
 
-	public static void log(Object message) {
-		log(message, Level.INFO);
-	}
+    public static void sendError(CommandSender sender, Object... msg) {
+        send(sender, ChatColor.RED.toString() + SPACE.join(msg));
+    }
 
-	public static void log(Object message, Level level) {
-		log.log(level, "[Citizens] " + message);
-	}
+    public static void sendErrorF(CommandSender sender, Object... msg) {
+        sendF(sender, ChatColor.RED.toString() + SPACE.join(msg));
+    }
 
-	public static void send(final CommandSender sender, String messages) {
-		int index = messages.indexOf("<delay");
-		if (index != -1) {
-			index += DELAY_STR_LENGTH;
-			String assignment = messages.substring(index,
-					messages.indexOf(">", index));
-			int delay = assignment.length() <= 1 ? 1 : Integer
-					.parseInt(assignment.substring(1, assignment.length()));
-			send(sender, messages.substring(0, index - DELAY_STR_LENGTH));
-			final String substr = messages.substring(
-					index + 1 + assignment.length(), messages.length());
-			Bukkit.getScheduler().scheduleSyncDelayedTask(null, new Runnable() {
-				@Override
-				public void run() {
-					send(sender, substr);
-				}
-			}, delay);
-			return;
-		}
-		for (String message : Splitter.on("<br>").omitEmptyStrings()
-				.split(messages)) {
-			if (sender instanceof Player) {
-				Player player = ((Player) sender);
-				message = message.replace("<h>", "" + player.getHealth());
-				message = message.replace("<name>", player.getName());
-				message = message.replace("<world>", player.getWorld()
-						.getName());
-			}
-			message = colourise(Strings.colourise(message));
-			sender.sendMessage(message);
-		}
-	}
+    public static void sendF(CommandSender sender, Object... msg) {
+        sendMessageTo(sender, getFormatted(msg));
+    }
 
-	public static void sendError(CommandSender sender, String error) {
-		send(sender, ChatColor.RED + error);
-	}
+    private static void sendMessageTo(CommandSender sender, String msg) {
+        msg = StringHelper.parseColors(msg);
+        sender.sendMessage(msg);
+    }
 
-	public static void sendError(Player player, String error) {
-		send(player, ChatColor.RED + error);
-	}
+    public static void sendWithNPC(CommandSender sender, Object msg) {
+        String send = msg.toString();
 
-	public static void sendUncertain(String name, String message) {
-		Player player = Bukkit.getServer().getPlayer(name);
-		if (player != null) {
-			send(player, message);
-		}
-	}
+        if (sender instanceof Player) {
+            Player player = (Player) sender;
+            send = send.replace("<player>", player.getName());
+            send = send.replace("<world>", player.getWorld().getName());
+        }
+
+        send(sender, send);
+    }
+
+    public static void severe(Object... messages) {
+        log(Level.SEVERE, messages);
+    }
+
+    public static void severeF(Object... messages) {
+        log(Level.SEVERE, getFormatted(messages));
+    }
 }

@@ -6,15 +6,15 @@ import com.fullwall.maps.applications.CanvasRenderer;
 import com.fullwall.maps.attachments.AttachableSurface;
 
 public interface ScreenRenderer extends AttachableSurface<CanvasRenderer> {
-	void clearPixels(CanvasRenderer renderer);
+    void clearPixels(CanvasRenderer renderer);
 
-	void clearScreen();
+    void clearScreen();
 
-	void forceRefresh(boolean rerender);
+    void forceRefresh(boolean rerender);
 
-	byte[] getScreenRaw();
+    byte[] getScreenRaw();
 
-	void render(Screen screen, MapCanvas canvas);
+    void render(Screen screen, MapCanvas canvas);
 
-	void setScreenRaw(byte[] image);
+    void setScreenRaw(byte[] image);
 }

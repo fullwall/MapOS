@@ -5,9 +5,8 @@ import com.fullwall.maps.attachments.KeyEvent;
 import com.fullwall.maps.attachments.MouseEvent;
 import com.fullwall.maps.attachments.ScreenAttachment;
 
-public interface ScreenAttachments extends AttachableSurface<ScreenAttachment>,
-		Renderable {
-	void processKeyEvent(KeyEvent event);
+public interface ScreenAttachments extends AttachableSurface<ScreenAttachment>, Renderable {
+    void processKeyEvent(KeyEvent event);
 
-	void processMouseEvent(MouseEvent event);
+    void processMouseEvent(MouseEvent event);
 }

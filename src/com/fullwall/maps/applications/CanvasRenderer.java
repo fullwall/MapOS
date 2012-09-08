@@ -3,19 +3,19 @@ package com.fullwall.maps.applications;
 import com.fullwall.maps.interfaces.Renderable;
 
 public interface CanvasRenderer extends Renderable {
-	boolean clearPixelsOnRemove();
+    boolean clearPixelsOnRemove();
 
-	RenderPriority getPriority();
+    RenderPriority getPriority();
 
-	boolean isRendering();
+    boolean isRendering();
 
-	void setDirty();
+    void setDirty();
 
-	public enum RenderPriority {
-		Highest,
-		High,
-		Normal,
-		Low,
-		Lowest;
-	}
+    public enum RenderPriority {
+        High,
+        Highest,
+        Low,
+        Lowest,
+        Normal;
+    }
 }

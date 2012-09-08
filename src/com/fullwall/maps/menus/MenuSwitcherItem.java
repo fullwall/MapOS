@@ -12,49 +12,49 @@ import com.fullwall.maps.utils.MapColour;
 import com.fullwall.maps.utils.MapString;
 
 public class MenuSwitcherItem implements MenuItem {
-	private final Menu current;
-	private final Menu parent;
-	private final ClickableArea clickable;
+    private final ClickableArea clickable;
+    private final Menu current;
+    private final Menu parent;
 
-	public MenuSwitcherItem(Menu current, Menu parent) {
-		this.current = current;
-		this.parent = parent;
-		Padding padding = current.getStyle().defaultPadding();
-		clickable = new ClickableShape(new Rectangle(padding.left(),
-				padding.upper(), text.getWidth(), text.getHeight()));
-	}
+    public MenuSwitcherItem(Menu current, Menu parent) {
+        this.current = current;
+        this.parent = parent;
+        Padding padding = current.getStyle().defaultPadding();
+        clickable = new ClickableShape(new Rectangle(padding.left(), padding.upper(), text.getWidth(),
+                text.getHeight()));
+    }
 
-	@Override
-	public ClickableArea getClickableArea() {
-		return this.clickable;
-	}
+    @Override
+    public ClickableArea getClickableArea() {
+        return this.clickable;
+    }
 
-	@Override
-	public int getHeight() {
-		return text.getHeight();
-	}
+    @Override
+    public int getHeight() {
+        return text.getHeight();
+    }
 
-	@Override
-	public void onMouseDown(MouseClickEvent event) {
-		current.disposeFrom(event.getScreen().getAttachments());
-		current.disposeFrom(event.getScreen().getRenderController());
-		event.getScreen().getRenderController().clearScreen();
-		parent.beginRendering();
-	}
+    @Override
+    public void onMouseDown(MouseClickEvent event) {
+        current.disposeFrom(event.getScreen().getAttachments());
+        current.disposeFrom(event.getScreen().getRenderController());
+        event.getScreen().getRenderController().clearScreen();
+        parent.beginRendering();
+    }
 
-	@Override
-	public void onMouseMove(MouseMoveEvent event) {
-	}
+    @Override
+    public void onMouseMove(MouseMoveEvent event) {
+    }
 
-	@Override
-	public void onMouseUp(MouseClickEvent event) {
-	}
+    @Override
+    public void onMouseUp(MouseClickEvent event) {
+    }
 
-	@Override
-	public void render(MapCanvas canvas, int currentX, int currentY) {
-		canvas.drawText(currentX, currentY, Constants.Font, text.toString());
-	}
+    @Override
+    public void render(MapCanvas canvas, int currentX, int currentY) {
+        canvas.drawText(currentX, currentY, Constants.Font, text.toString());
+    }
 
-	private static final MapString text = new MapString(MapColour.LightGreen
-			+ "<- ").concat(MapColour.Blue + "back");
+    private static final MapString text = new MapString(MapColour.LightGreen + "<- ").concat(MapColour.Blue
+            + "back");
 }

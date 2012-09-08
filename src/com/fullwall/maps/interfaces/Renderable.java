@@ -8,8 +8,8 @@ import org.bukkit.map.MapCanvas;
  * @author fullwall
  */
 public interface Renderable {
-	/**
-	 * Render to a given screen and canvas.
-	 */
-	void render(Screen screen, MapCanvas canvas);
+    /**
+     * Render to a given screen and canvas.
+     */
+    void render(Screen screen, MapCanvas canvas);
 }

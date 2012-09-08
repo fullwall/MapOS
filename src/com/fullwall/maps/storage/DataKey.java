@@ -1,53 +1,95 @@
 package com.fullwall.maps.storage;
 
-import java.util.List;
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
 
-public interface DataKey {
-	void copy(String to);
+public abstract class DataKey {
+    public abstract boolean getBoolean(String key);
 
-	boolean getBoolean(String keyExt);
+    public boolean getBoolean(String key, boolean value) {
+        if (keyExists(key))
+            return getBoolean(key);
+        setBoolean(key, value);
+        return value;
+    }
 
-	boolean getBoolean(String keyExt, boolean value);
+    public abstract byte[] getByteArray(String key);
 
-	double getDouble(String keyExt);
+    public abstract double getDouble(String key);
 
-	double getDouble(String keyExt, double value);
+    public double getDouble(String key, double value) {
+        if (keyExists(key))
+            return getDouble(key);
+        setDouble(key, value);
+        return value;
+    }
 
-	int getInt(String keyExt);
+    public abstract int getInt(String key);
 
-	int getInt(String keyExt, int value);
+    public int getInt(String key, int value) {
+        if (keyExists(key))
+            return getInt(key);
+        setInt(key, value);
+        return value;
+    }
 
-	List<DataKey> getIntegerSubKeys();
+    public Iterable<DataKey> getIntegerSubKeys() {
+        return Iterables.filter(getSubKeys(), SIMPLE_INTEGER_FILTER);
+    }
 
-	long getLong(String keyExt);
+    public abstract long getLong(String key);
 
-	long getLong(String keyExt, long value);
+    public long getLong(String key, long value) {
+        if (keyExists(key))
+            return getLong(key);
+        setLong(key, value);
+        return value;
+    }
 
-	Object getRaw(String keyExt);
+    public abstract Object getRaw(String key);
 
-	DataKey getRelative(String relative);
+    public abstract DataKey getRelative(String relative);
 
-	String getString(String keyExt);
+    public abstract String getString(String key);
 
-	String getString(String keyExt, String value);
+    public String getString(String key, String value) {
+        if (keyExists(key))
+            return getString(key);
+        setString(key, value);
+        return value;
+    }
 
-	Iterable<DataKey> getSubKeys();
+    public abstract Iterable<DataKey> getSubKeys();
 
-	boolean keyExists(String keyExt);
+    public abstract boolean keyExists(String key);
 
-	String name();
+    public abstract String name();
 
-	void removeKey(String keyExt);
+    public abstract void removeKey(String key);
 
-	void setBoolean(String keyExt, boolean value);
+    public abstract void setBoolean(String key, boolean value);
 
-	void setDouble(String keyExt, double value);
+    public abstract void setByteArray(String key, byte[] array);
 
-	void setInt(String keyExt, int value);
+    public abstract void setDouble(String key, double value);
 
-	void setLong(String keyExt, long value);
+    public abstract void setInt(String key, int value);
 
-	void setRaw(String path, Object value);
+    public abstract void setLong(String key, long value);
 
-	void setString(String keyExt, String value);
+    public abstract void setRaw(String key, Object value);
+
+    public abstract void setString(String key, String value);
+
+    private static final Predicate<DataKey> SIMPLE_INTEGER_FILTER = new Predicate<DataKey>() {
+        @Override
+        public boolean apply(DataKey key) {
+            try {
+                Integer.parseInt(key.name());
+                return true;
+            } catch (NumberFormatException ex) {
+                return false;
+            }
+        }
+    };
 }

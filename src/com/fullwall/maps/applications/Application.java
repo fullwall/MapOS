@@ -6,13 +6,13 @@ import com.fullwall.maps.interfaces.ApplicationController.InterruptReason;
 import com.fullwall.maps.interfaces.Saveable;
 
 public interface Application extends Saveable {
-	void interrupt(InterruptReason reason);
+    void begin();
 
-	void begin();
+    String getAppName();
 
-	void resume();
+    void interrupt(InterruptReason reason);
 
-	String getAppName();
+    void onCommand(Player player, String command, String[] args);
 
-	void onCommand(Player player, String command, String[] args);
+    void resume();
 }

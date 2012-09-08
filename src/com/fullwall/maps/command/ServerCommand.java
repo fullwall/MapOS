@@ -1,4 +1,4 @@
-package com.fullwall.maps.sk89q;
+package com.fullwall.maps.command;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

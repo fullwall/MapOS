@@ -1,17 +1,17 @@
 package com.fullwall.maps.interfaces;
 
 public interface StateHolder<T> {
-	void addLoader(Loadable loader);
+    void addLoader(Loadable loader);
 
-	void addSaver(Saveable saver);
+    void addSaver(Saveable saver);
 
-	T getGlobalStates();
+    T getGlobalStates();
 
-	void load();
+    void load();
 
-	void load(Loadable renderer);
+    void load(Loadable renderer);
 
-	void save();
+    void save();
 
-	void store(Saveable saver);
+    void store(Saveable saver);
 }

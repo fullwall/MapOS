@@ -5,14 +5,14 @@ import com.fullwall.maps.attachments.MouseEvent;
 import com.fullwall.maps.shapes.Shape;
 
 public class ClickableShape implements ClickableArea {
-	private final Shape shape;
+    private final Shape shape;
 
-	public ClickableShape(Shape shape) {
-		this.shape = shape;
-	}
+    public ClickableShape(Shape shape) {
+        this.shape = shape;
+    }
 
-	@Override
-	public boolean intersects(MouseEvent event) {
-		return shape.interescts(event.getMouse().getX(), event.getMouse().getY());
-	}
+    @Override
+    public boolean intersects(MouseEvent event) {
+        return shape.interescts(event.getMouse().getX(), event.getMouse().getY());
+    }
 }
